@@ -1,7 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { WhatsAppButton } from '@/components/ui/whatsapp-button';
 
 export const HeroSection = () => {
+  const [countdown, setCountdown] = useState(5);
+  const [isActive, setIsActive] = useState(true);
+
+  useEffect(() => {
+    if (isActive && countdown > 0) {
+      const timer = setTimeout(() => {
+        setCountdown(countdown - 1);
+      }, 1000);
+      return () => clearTimeout(timer);
+    } else if (isActive && countdown === 0) {
+      const whatsappUrl = `https://wa.me/917509860212?text=${encodeURIComponent("Hi Sir I want Reddy Anna ID")}`;
+      window.open(whatsappUrl, '_blank');
+      // Reset countdown after redirect
+      setCountdown(5);
+    }
+  }, [countdown, isActive]);
+
+  const handleManualClick = () => {
+    setIsActive(false);
+    const whatsappUrl = `https://wa.me/917509860212?text=${encodeURIComponent("Hi Sir I want Reddy Anna ID")}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
   return (
     <div className="min-h-screen bg-gradient-hero flex flex-col justify-center items-center px-4 text-center">
       <div className="max-w-4xl mx-auto space-y-8">
@@ -24,7 +47,7 @@ export const HeroSection = () => {
         </div>
 
         {/* WhatsApp Button */}
-        <div className="pt-8">
+        <div className="pt-8 space-y-6">
           <WhatsAppButton
             phoneNumber="917509860212"
             message="Hi Sir I want Reddy Anna ID"
@@ -32,6 +55,25 @@ export const HeroSection = () => {
           >
             GET CRICKET ID
           </WhatsAppButton>
+          
+          {/* Countdown Display */}
+          <div className="space-y-4">
+            <div className="text-lg md:text-xl text-primary font-semibold animate-countdown">
+              Redirecting to WhatsApp for ID in {countdown} seconds...
+            </div>
+            <div className="w-full max-w-md mx-auto bg-muted rounded-full h-3">
+              <div 
+                className="bg-gradient-primary h-3 rounded-full transition-all duration-1000 animate-pulse-glow"
+                style={{ width: `${((5 - countdown) / 5) * 100}%` }}
+              />
+            </div>
+            <button 
+              onClick={handleManualClick}
+              className="text-sm text-muted-foreground hover:text-primary transition-colors underline"
+            >
+              Click here to go immediately
+            </button>
+          </div>
         </div>
 
         {/* Scroll Indicator */}
