@@ -16,11 +16,11 @@ export const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
   children
 }) => {
   const [showCountdown, setShowCountdown] = useState(false);
-  const [countdown, setCountdown] = useState(5);
+  const [countdown, setCountdown] = useState(30);
 
   const handleClick = () => {
     setShowCountdown(true);
-    setCountdown(5);
+    setCountdown(30);
   };
 
   useEffect(() => {
@@ -33,7 +33,7 @@ export const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
       const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, '_blank');
       setShowCountdown(false);
-      setCountdown(5);
+      setCountdown(30);
     }
   }, [showCountdown, countdown, phoneNumber, message]);
 
@@ -49,7 +49,7 @@ export const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
         <div className="w-full bg-muted rounded-full h-2">
           <div 
             className="bg-gradient-primary h-2 rounded-full transition-all duration-1000"
-            style={{ width: `${((5 - countdown) / 5) * 100}%` }}
+            style={{ width: `${((30 - countdown) / 30) * 100}%` }}
           />
         </div>
       </div>

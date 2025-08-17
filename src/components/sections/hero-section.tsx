@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { WhatsAppButton } from '@/components/ui/whatsapp-button';
 
 export const HeroSection = () => {
-  const [countdown, setCountdown] = useState(5);
+  const [countdown, setCountdown] = useState(30);
   const [isActive, setIsActive] = useState(true);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ export const HeroSection = () => {
       const whatsappUrl = `https://wa.me/917509860212?text=${encodeURIComponent("Hi Sir I want Reddy Anna ID")}`;
       window.open(whatsappUrl, '_blank');
       // Reset countdown after redirect
-      setCountdown(5);
+      setCountdown(30);
     }
   }, [countdown, isActive]);
 
@@ -44,6 +44,11 @@ export const HeroSection = () => {
           <p className="text-lg md:text-xl text-primary font-semibold">
             Minimum ID Starting from 100₹
           </p>
+          <div className="bg-card/50 backdrop-blur-sm rounded-lg p-4 border border-border">
+            <p className="text-base md:text-lg text-muted-foreground">
+              🎰 Play Casino • 🎯 Teen Patti • 🃏 Rummy • 🎮 300+ Games
+            </p>
+          </div>
         </div>
 
         {/* WhatsApp Button */}
@@ -53,7 +58,7 @@ export const HeroSection = () => {
             message="Hi Sir I want Reddy Anna ID"
             className="animate-pulse-glow"
           >
-            GET CRICKET ID
+            GET GAMBLING/BETTING ID
           </WhatsAppButton>
           
           {/* Countdown Display */}
@@ -64,7 +69,7 @@ export const HeroSection = () => {
             <div className="w-full max-w-md mx-auto bg-muted rounded-full h-3">
               <div 
                 className="bg-gradient-primary h-3 rounded-full transition-all duration-1000 animate-pulse-glow"
-                style={{ width: `${((5 - countdown) / 5) * 100}%` }}
+                style={{ width: `${((30 - countdown) / 30) * 100}%` }}
               />
             </div>
             <button 
